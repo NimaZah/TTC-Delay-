@@ -13,3 +13,19 @@ df.head(3)
 
 print('shape:', df.shape, '\n', 'describe:', df.describe(), '\n', 'info:', df.info(), '\n', 'values:', df.values, '\n', 'columns:', df.columns, sep='\n')
 
+# EDA. The folliwng is a list of 5 exploratory data analysis (EDA) questions.
+# 1. What is the distribution of the delay time?
+# 2. What is the relationship between delay time and the number of passengers?
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.figure(figsize=(10,6))
+sns.distplot(df['Min Delay'], bins=50)
+plt.show()
+
+df['Day'] = df['Date'].dt.day_name()
+
+plt.figure(figsize=(10,6))
+sns.boxplot(x=df.dt.Time , y='Min Delay', data=df)
+plt.show()
